@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Weather App Home Page</title>
+    <link rel="stylesheet" href="project.css">
+    <script src="project.js" defer></script>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="searchCity">
+            <h2>Weather Search</h2>
+            <input type="text" id="citySearch" placeholder="Enter city name">
+            <button id="searchBotton" onclick="fetchWeather()">Get Weather</button>
+        </div>
+        
+        <div id="weatherInfo">
+            <h2>Weather Details</h2>
+            <div id="weatherResult">
+            </div>
+        </div>
+    </main>
+</body>
+</html>
