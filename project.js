@@ -1,48 +1,86 @@
 const weatherAPI = 'https://api.openweathermap.org/data/2.5/weather';
 const API_KEY = 'f172a6cf66f108b8baa3d30867938624';
+let weatherChart;
 
 async function fetchWeather() {
     const city = document.getElementById('citySearch').value.trim();
-    
+
     if (!city) {
         alert('Please enter a city name!');
         return;
     }
 
     const url = `${weatherAPI}?q=${city}&appid=${API_KEY}&units=metric`;
-
     const response = await fetch(url);
     const data = await response.json();
-    displayWeather(data);
+    document.getElementById('weatherInfo').style.display = 'block';
+    displayWeatherChart(data);
+    displayCityMap(data);
+
 }
 
-function displayWeather(data) {
-    const temperatureCelsius = data.main.temp;
-    const temperatureFahrenheit = (temperatureCelsius * 9 / 5) + 32;
-    const feelsLikeCelsius = data.main.feels_like;
-    const feelsLikeFahrenheit = (feelsLikeCelsius * 9 / 5) + 32;
+function displayWeatherChart(data) {
+    const ctx = document.getElementById('weatherChart');
+    const temperatureFahrenheit = (data.main.temp * 9) / 5 + 32;
+    const feelsLikeFahrenheit = (data.main.feels_like * 9) / 5 + 32;
+    const windSpeed = data.wind.speed;
+    const labels = ['Temperature (°F)', 'Feels Like (°F)', 'Wind Speed (m/s)'];
+    const chartData = [temperatureFahrenheit, feelsLikeFahrenheit, windSpeed];
+    if (weatherChart) {
+        weatherChart.destroy();
+    }
+    weatherChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: `Weather Data for ${data.name}, ${data.sys.country}`,
+                data: chartData,
+                backgroundColor: [
+                    'green',
+                    'purple',
+                    'orange'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                datalabels: {
+                    anchor: 'end',
+                    align: 'top',
+                    font: {
+                        weight: 'bold'
+                    },
+                    formatter: (value) => value.toFixed(0)
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+}
+let map;
 
-    const weatherResult = document.getElementById('weatherResult');
+function displayCityMap(data) {
+    const cityLatitude = data.coord.lat;
+    const cityLongitude = data.coord.lon;
 
-    const heading = document.createElement('h3');
-    heading.textContent = `Weather in ${data.name}, ${data.sys.country}`;
-    weatherResult.appendChild(heading);
+    if (map) {
+        map.remove();
+    }
 
-    const temp = document.createElement('p');
-    temp.innerHTML = `<strong>Temperature:</strong> ${temperatureFahrenheit.toFixed(2)}°F / ${temperatureCelsius}°C`;
-    weatherResult.appendChild(temp);
-    
-    const feelsLike = document.createElement('p');
-    feelsLike.innerHTML = `<strong>Feels Like:</strong> ${feelsLikeFahrenheit.toFixed(2)}°F / ${feelsLikeCelsius}°C`;
-    weatherResult.appendChild(feelsLike);
-    
-    const wind = document.createElement('p');
-    wind.innerHTML = `<strong>Wind Speed:</strong> ${data.wind.speed} m/s`;
-    weatherResult.appendChild(wind);
-    
-    const humidity = document.createElement('p');
-    humidity.innerHTML = `<strong>Humidity:</strong> ${data.main.humidity}%`;
-    weatherResult.appendChild(humidity);
+    map = L.map('cityMap').setView([cityLatitude, cityLongitude], 12);
 
-    weatherResult.appendChild(weatherDescription);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([cityLatitude, cityLongitude]).addTo(map)
+        .bindPopup(`<b>${data.name}</b><br>${data.sys.country}`)
+        .openPopup();
 }

@@ -40,6 +40,10 @@ main {
     align-items: center;
 }
 
+#cityMap {
+    height: 180px;
+}
+
 #searchCity {
     background-color: powderblue;
     padding: 20px;
@@ -81,6 +85,7 @@ main {
     border-radius: 8px;
     width: 50%;
     text-align: center;
+    display: none;
 }
 
 #weatherInfo h2 {

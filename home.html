@@ -1,9 +1,18 @@
 <html>
+
 <head>
     <title>Weather App Home Page</title>
     <link rel="stylesheet" href="project.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
     <script src="project.js" defer></script>
+
 </head>
+
 <body>
     <h1>Weather App</h1>
     <header>
@@ -21,12 +30,13 @@
             <input type="text" id="citySearch" placeholder="Enter city name">
             <button id="searchBotton" onclick="fetchWeather()">Get Weather</button>
         </div>
-        
+
         <div id="weatherInfo">
             <h2>Weather Details</h2>
-            <div id="weatherResult">
-            </div>
+            <div id="cityMap"></div>
+            <canvas id="weatherChart"></canvas>
         </div>
     </main>
 </body>
+
 </html>
