@@ -84,3 +84,29 @@ function displayCityMap(data) {
         .bindPopup(`<b>${data.name}</b><br>${data.sys.country}`)
         .openPopup();
 }
+
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://iqqndgjmbmcfkwchulkw.supabase.co'
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+app.get('/api/getWeatherData', async (req, res) => {
+    const { data, error } = await supabase
+        .from('weather_data')
+        .select('*');
+
+    if (error) {
+        return res.status(500).json({ error: error.message });
+    }
+    res.status(200).json(data);
+});
+fff
+
+
+
