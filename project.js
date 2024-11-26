@@ -88,8 +88,8 @@ function displayCityMap(data) {
 
 // import { createClient } from '@supabase/supabase-js'
 
-// const supabaseUrl = 'https://iqqndgjmbmcfkwchulkw.supabase.co'
-// const supabaseKey = process.env.SUPABASE_KEY
+// SUPABASE_URL='https://iqqndgjmbmcfkwchulkw.supabase.co'
+// const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlxcW5kZ2ptYm1jZmt3Y2h1bGt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIxMzE5ODgsImV4cCI6MjA0NzcwNzk4OH0.3XGcXn0eL7b4163Rmy81vPXYAlQJIJ8jqGiMReH2nTo'
 // const supabase = createClient(supabaseUrl, supabaseKey)
 
 // const express = require('express');
