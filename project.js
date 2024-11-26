@@ -94,7 +94,7 @@ function displayCityMap(data) {
 
 // const express = require('express');
 // const app = express();
-// const PORT = 3000;
+// const PORT = 3000; 
 
 // app.get('/api/getWeatherData', async (req, res) => {
 //     const { data, error } = await supabase
