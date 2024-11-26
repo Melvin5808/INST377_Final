@@ -86,24 +86,28 @@ function displayCityMap(data) {
 }
 
 
-// import { createClient } from '@supabase/supabase-js'
+const { createClient } = require('@supabase/supabase-js');
+const express = require('express');
 
-// SUPABASE_URL='https://iqqndgjmbmcfkwchulkw.supabase.co'
-// const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlxcW5kZ2ptYm1jZmt3Y2h1bGt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIxMzE5ODgsImV4cCI6MjA0NzcwNzk4OH0.3XGcXn0eL7b4163Rmy81vPXYAlQJIJ8jqGiMReH2nTo'
-// const supabase = createClient(supabaseUrl, supabaseKey)
+const supabaseUrl = 'https://iqqndgjmbmcfkwchulkw.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlxcW5kZ2ptYm1jZmt3Y2h1bGt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIxMzE5ODgsImV4cCI6MjA0NzcwNzk4OH0.3XGcXn0eL7b4163Rmy81vPXYAlQJIJ8jqGiMReH2nTo';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-// const express = require('express');
-// const app = express();
-// const PORT = 3000; 
+const app = express();
+const PORT = 3000;
 
-// app.get('/api/getWeatherData', async (req, res) => {
-//     const { data, error } = await supabase
-//         .from('weather_data')
-//         .select('*');
+app.get('/api/getWeatherData', async (req, res) => {
+    const { data, error } = await supabase
+        .from('weather_data')
+        .select('*');
 
-//     if (error) {
-//         return res.status(500).json({ error: error.message });
-//     }
-//     res.status(200).json(data);
-// });
-// fff
+    if (error) {
+        return res.status(500).json({ error: error.message });
+    }
+    res.status(200).json(data);
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
+
