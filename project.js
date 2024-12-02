@@ -85,6 +85,15 @@ function displayCityMap(data) {
         .openPopup();
 }
 
+function transition(event) {
+    event.preventDefault();
+    const targetUrl = event.currentTarget.href;
+    document.body.classList.add("fade-out"); 
+
+    setTimeout(() => {
+        window.location.href = targetUrl;
+    }, 500); 
+}
 
 const { createClient } = require('@supabase/supabase-js');
 const express = require('express');
