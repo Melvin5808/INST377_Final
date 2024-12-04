@@ -105,16 +105,16 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const app = express();
 const PORT = 3000;
 
-app.get('/api/getWeatherData', async (req, res) => {
-    const { data, error } = await supabase
-        .from('weather_data')
-        .select('*');
+// app.get('/api/getWeatherData', async (req, res) => {
+//     const { data, error } = await supabase
+//         .from('weather_data')
+//         .select('*');
 
-    if (error) {
-        return res.status(500).json({ error: error.message });
-    }
-    res.status(200).json(data);
-});
+//     if (error) {
+//         return res.status(500).json({ error: error.message });
+//     }
+//     res.status(200).json(data);
+// });
 
 app.get('/api/getWeatherData', async (req, res) => {
     const { data, error } = await supabase
