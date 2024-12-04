@@ -116,6 +116,18 @@ app.get('/api/getWeatherData', async (req, res) => {
     res.status(200).json(data);
 });
 
+app.get('/api/getWeatherData', async (req, res) => {
+    const { data, error } = await supabase
+        .from('Default_Locations')
+        .select('*');
+
+    if (error) {
+        return res.status(500).json({ error: error.message });
+    }
+    res.status(200).json(data);
+});
+
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
