@@ -88,12 +88,25 @@ function displayCityMap(data) {
 function transition(event) {
     event.preventDefault();
     const targetUrl = event.currentTarget.href;
-    document.body.classList.add("fade-out"); 
+    document.body.classList.add("fade-out");
 
     setTimeout(() => {
         window.location.href = targetUrl;
-    }, 500); 
+    }, 500);
 }
+
+async function fetchDefaultLocations() {
+    const response = await fetch('http://localhost:3000/api/getWeatherData');
+    const defaultLocations = await response.json();
+
+    console.log(defaultLocations)
+
+ 
+
+}
+
+fetchDefaultLocations();
+
 
 const { createClient } = require('@supabase/supabase-js');
 const express = require('express');
