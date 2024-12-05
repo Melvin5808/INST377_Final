@@ -101,6 +101,20 @@ async function fetchDefaultLocations() {
 
     console.log(defaultLocations)
 
+    const firstLocation = defaultLocations[0]
+    console.log('location',firstLocation)
+
+    const city = firstLocation.city_name
+    const country = firstLocation.country_code
+    const url = `${weatherAPI}?q=${city},${country}&appid=${API_KEY}&units=metric`;
+    const res = await fetch(url);
+    const weather = await res.json();
+
+    console.log('data', weather)
+
+    document.getElementById('weatherInfo').style.display = 'block'
+    displayWeatherChart(weather)
+    displayCityMap(weather)
  
 
 }
