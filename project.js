@@ -95,31 +95,41 @@ function transition(event) {
     }, 500);
 }
 
+let default_locals = [];
+let idx = 0;
+
 async function fetchDefaultLocations() {
     const response = await fetch('http://localhost:3000/api/getWeatherData');
-    const defaultLocations = await response.json();
+    default_locals = await response.json();
+    console.log(default_locals)
 
-    console.log(defaultLocations)
+    const location = default_locals[idx]
+    console.log('location', location)
 
-    const firstLocation = defaultLocations[0]
-    console.log('location',firstLocation)
-
-    const city = firstLocation.city_name
-    const country = firstLocation.country_code
+    const city = location.city_name
+    const country = location.country_code
     const url = `${weatherAPI}?q=${city},${country}&appid=${API_KEY}&units=metric`;
+
     const res = await fetch(url);
     const weather = await res.json();
-
     console.log('data', weather)
 
     document.getElementById('weatherInfo').style.display = 'block'
     displayWeatherChart(weather)
     displayCityMap(weather)
- 
 
 }
 
-fetchDefaultLocations();
+function switchDefault() {
+    idx = (idx + 1)
+    if (idx === 5) {
+        idx = 0;
+    }
+    fetchDefaultLocations();
+}
+
+window.onload = fetchDefaultLocations
+
 
 
 const { createClient } = require('@supabase/supabase-js');
