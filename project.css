@@ -6,6 +6,10 @@ body {
     transition: opacity 0.5s ease-in-out; 
 }
 
+#appheader {
+    color: white;
+}
+
 body.fade-out {
     opacity: 0; 
 }
@@ -122,3 +126,9 @@ main {
 #weatherInfo h2 {
     color: black;
 }
+
+body {
+    background-image: url(sunrise.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+ }
