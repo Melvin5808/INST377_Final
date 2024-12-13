@@ -23,9 +23,8 @@ Provides real-time weather data, including:
 - Humidity levels
   
 Example API Call:
-bash
 Copy code
-https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY
+https://api.openweathermap.org/data/2.5/weather?q=London&appid='f172a6cf66f108b8baa3d30867938624'
 
 Backend APIs:
 - GET /weather: Fetches weather data from the backend database.
@@ -39,31 +38,25 @@ Prerequisites
 Steps
 1. Clone the repository:
 
-bash
-Copy code
 git clone https://github.com/your-username/weather-app.git
 cd weather-app
 
 2. Install dependencies:
 
-bash
-Copy code
+
 npm install
 Create an .env file in the root directory with the following content:
 
-3. Set enviroment variables
+3. Set environment variables
 makefile
-Copy code
-API_KEY=your_openweathermap_api_key
+API_KEY='f172a6cf66f108b8baa3d30867938624'
 
 4. Start the application:
 
-bash
-Copy code
 npm start
 Open your browser and go to http://localhost:3000.
 
-Features
+Our Features
 Home Page:
 - City search bar to fetch real-time weather.
 - Display weather details, such as temperature, wind speed, and humidity.
