@@ -29,14 +29,25 @@
             <h2>Weather Search</h2>
             <input type="text" id="citySearch" placeholder="Enter City Name">
             <button class="button-89" id="searchButton" onclick="fetchWeather()">Get Weather</button>
-        </div>  
-        <h2>Default Locations</h2>      
-        <button class="button-89" id="changeDefault" onclick="switchDefault()">Next Location</button>
-        <br>
+        </div>
+        <div>
+            <h2>Default Locations</h2>
+            <button class="button-89" id="changeDefault" onclick="switchDefault()">Next Location</button>
+            <br>
+        </div>
         <div id="weatherInfo">
             <h2>Weather Details</h2>
             <div id="cityMap"></div>
             <canvas id="weatherChart"></canvas>
+        </div>
+        <br>
+        <div>
+            <form id="addLocationForm" onsubmit="return handleFormSubmit()">
+                <input type="text" id="city_name" placeholder="Enter city name" />
+                <input type="text" id="country_code" placeholder="Enter country code" />
+                <button type="submit">Add Location</button>
+            </form>
+            
         </div>
     </main>
 </body>

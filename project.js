@@ -128,8 +128,38 @@ function switchDefault() {
     fetchDefaultLocations();
 }
 
-window.onload = fetchDefaultLocations
+async function handleFormSubmit() {
+    const city_name = document.getElementById('city_name').value;
+    const country_code = document.getElementById('country_code').value;
 
+    if (!city_name || !country_code) {
+        alert('Both fields are required');
+        return;
+    }
+
+    const requestBody = { city_name, country_code };
+    console.log('Body:', requestBody);
+
+    const response = await fetch('http://localhost:3000/api/addDefaultLocation', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+    });
+
+    console.log('Res:', response);
+
+    const responseData = await response.json();
+    console.log('Res', responseData);
+
+    if (response.ok) {
+        alert('Working');
+    } else {
+        alert(`Error: ${responseData.error || responseData.message}`);
+    }
+
+}
 
 
 const { createClient } = require('@supabase/supabase-js');
@@ -141,17 +171,8 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const app = express();
 const PORT = 3000;
+app.use(express.json());
 
-// app.get('/api/getWeatherData', async (req, res) => {
-//     const { data, error } = await supabase
-//         .from('weather_data')
-//         .select('*');
-
-//     if (error) {
-//         return res.status(500).json({ error: error.message });
-//     }
-//     res.status(200).json(data);
-// });
 
 app.get('/api/getWeatherData', async (req, res) => {
     const { data, error } = await supabase
@@ -163,6 +184,27 @@ app.get('/api/getWeatherData', async (req, res) => {
     }
     res.status(200).json(data);
 });
+
+
+app.post('/api/addDefaultLocation', async (req, res) => {
+    const { city_name, country_code } = req.body;
+
+    if (!city_name || !country_code) {
+        return res.status(400).json({ error: 'city and country code needed' });
+    }
+
+    const { data, error } = await supabase
+        .from('Default_Locations')
+        .insert([{ city_name, country_code }]);
+
+    if (error) {
+        return res.status(500).json({ error: error.message });
+    }
+
+    res.status(201).json({ message: 'Location added', data });
+});
+
+
 
 
 app.listen(PORT, () => {
