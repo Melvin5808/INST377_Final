@@ -12,6 +12,14 @@ body {
     color: white;
 }
 
+#about-section {
+    color: white;
+}
+
+#help-section {
+    color: white;
+}
+
 body.fade-out {
     opacity: 0;
 }
