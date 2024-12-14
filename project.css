@@ -134,13 +134,12 @@ main {
     text-align: center;
     display: none;
 }
-.default-box{
+.location-form{
     background-color: powderblue;
     padding: 20px;
     border-radius: 8px;
-    width: 50%;
     text-align: center;
-
+   
    
 }
 .default-content{
