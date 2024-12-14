@@ -5,7 +5,7 @@ body {
     color: black;
     font-size: 16px;
     opacity: 1;
-    transition: opacity 0.5s ease-in-out; 
+    transition: opacity 0.5s ease-in-out;
 }
 
 #appheader {
@@ -13,7 +13,7 @@ body {
 }
 
 body.fade-out {
-    opacity: 0; 
+    opacity: 0;
 }
 
 header {
@@ -82,38 +82,40 @@ main {
 }
 
 .button-89 {
-  --b: 3px; 
-  --s: .45em;
-  --color: #373B44;
-  
-  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
-  color: var(--color);
-  --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .6em;
-  font-size: 16px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    --b: 3px;
+    --s: .45em;
+    --color: #373B44;
 
-  border: 0;
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+        conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-size: 16px;
 
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+    border: 0;
+
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .button-89:hover,
-.button-89:focus-visible{
-  --_p: 0px;
-  outline-color: var(--color);
-  outline-offset: .05em;
+.button-89:focus-visible {
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
 }
 
 .button-89:active {
-  background: var(--color);
-  color: #fff;
+    background: var(--color);
+    color: #fff;
 }
 
 #weatherInfo {
@@ -128,4 +130,3 @@ main {
 #weatherInfo h2 {
     color: black;
 }
-

@@ -43,9 +43,10 @@ cd weather-app
 
 2. Install dependencies:
 
-
 npm install
 Create an .env file in the root directory with the following content:
+
+
 
 3. Set environment variables
 makefile
