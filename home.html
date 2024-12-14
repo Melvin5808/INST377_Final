@@ -36,11 +36,13 @@
             <canvas id="weatherChart"></canvas>
         </div>
         <br>
-        <div>
-            <h2>Default Locations</h2>
-            <button class="button-89" id="changeDefault" onclick="switchDefault()">Defaults</button>
-            <br>
-        </div>
+        <div class="default-box">
+            <div class="default-content">
+                <h2>Default Location</h2>
+                <button class="button-89" id="changeDefault" onclick="switchDefault()">Defaults</button>
+                <br>
+            </div>
+      
         <br>
         <div>
             <form id="addLocationForm" onsubmit="return handleFormSubmit()">
@@ -50,8 +52,9 @@
                 <input type="text" id="country_code" placeholder="US" />
                 <button type="submit">Add Location</button>
             </form>
-            
+
         </div>
+    </div>
     </main>
 </body>
 

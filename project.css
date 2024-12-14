@@ -134,7 +134,18 @@ main {
     text-align: center;
     display: none;
 }
+.default-box{
+    background-color: powderblue;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    text-align: center;
 
+   
+}
+.default-content{
+    text-align: center;
+}
 #weatherInfo h2 {
     color: black;
 }
