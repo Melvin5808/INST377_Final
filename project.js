@@ -122,7 +122,7 @@ async function fetchDefaultLocations() {
 
 function switchDefault() {
     idx = (idx + 1)
-    if (idx === 5) {
+    if (idx === default_locals.length - 1) {
         idx = 0;
     }
     fetchDefaultLocations();
@@ -158,6 +158,8 @@ async function handleFormSubmit() {
     } else {
         alert(`Error: ${responseData.error || responseData.message}`);
     }
+
+    await fetchDefaultLocations();
 
 }
 
