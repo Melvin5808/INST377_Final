@@ -122,7 +122,7 @@ async function fetchDefaultLocations() {
 
 function switchDefault() {
     idx = (idx + 1)
-    if (idx === default_locals.length - 1) {
+    if (idx === default_locals.length) {
         idx = 0;
     }
     fetchDefaultLocations();
