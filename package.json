@@ -2,7 +2,7 @@
   "name": "inst377_final",
   "version": "1.0.0",
   "description": "Supabase Final",
-  "main": "project.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -e '*'"
