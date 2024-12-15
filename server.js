@@ -24,5 +24,4 @@ app.get('/api/currentWeather/:city', async (req, res) => {
   }
 });
 
-// Export the app so Vercel can use it
 module.exports = app;
