@@ -2,12 +2,11 @@ const express = require('express');
 const fetch = require('node-fetch');
 
 const app = express();
-const port = 3000;
 
 const weatherAPI = 'https://api.openweathermap.org/data/2.5/weather';
 const API_KEY = 'f172a6cf66f108b8baa3d30867938624';
 
-app.get('/currentWeather/:city', async (req, res) => {
+app.get('/api/currentWeather/:city', async (req, res) => {
   const city = req.params.city;
   const weatherUrl = `${weatherAPI}?q=${city}&appid=${API_KEY}`;
 
@@ -25,6 +24,5 @@ app.get('/currentWeather/:city', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+// Export the app so Vercel can use it
+module.exports = app;
