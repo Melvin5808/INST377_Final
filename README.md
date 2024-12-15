@@ -12,7 +12,7 @@ Our main objective is to make weather insights accessible and visually engaging 
 - **Desktop Browsers**: Chrome, Firefox, Safari, Edge (latest versions)  
 - **Mobile Browsers**: iOS Safari, Android Chrome  
 
-Responsive design ensures compatibility across different screen sizes.
+Our responsive design ensures compatibility across different screen sizes.
 
 ---
 
