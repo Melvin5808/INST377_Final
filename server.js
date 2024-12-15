@@ -1,69 +1,48 @@
 const express = require('express');
-const { createClient } = require('@supabase/supabase-js');
-const bodyParser = require('body-parser');
-const axios = require('axios');
+const fetch = require('node-fetch');
 
 const app = express();
 const port = 3000;
-app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
 
-const supabaseUrl = 'https://rqkwwyoaeswcmxqprmrl.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxa3d3eW9hZXN3Y214cXBybXJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE3OTQ3MzUsImV4cCI6MjA0NzM3MDczNX0.lFCNsUJeZjfkpjqGpt7JMwrRFTwehd-WK4feasXTwf8';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const weatherAPI = 'https://api.openweathermap.org/data/2.5/weather';
+const API_KEY = 'f172a6cf66f108b8baa3d30867938624';
 
-app.get('/', (req, res) => {
-  res.sendFile('public/home.html', { root: __dirname });
-});
-
-app.get('/weather', async (req, res) => {
-  const { city } = req.query;
-  
-  if (!city) {
-    res.status(400).json({ message: 'City is required' });
-    return;
-  }
+app.get('/currentWeather/:city', async (req, res) => {
+  const city = req.params.city;
+  const weatherUrl = `${weatherAPI}?q=${city}&appid=${API_KEY}`;
 
   try {
-    const apiKey = 'f172a6cf66f108b8baa3d30867938624'; 
-    const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
-    const weatherData = weatherResponse.data;
-    res.status(200).json({
-      city: weatherData.name,
-      temperature: weatherData.main.temp,
-      weather: weatherData.weather[0].description,
-      humidity: weatherData.main.humidity,
-      windSpeed: weatherData.wind.speed
-    });
-  } catch (error) {
-    console.log('Error fetching weather data:', error);
-    res.status(500).json({ message: 'Unable to fetch weather data' });
-  }
-});
+    const response = await fetch(weatherUrl);
 
-app.post('/weather-search', async (req, res) => {
-  const { city } = req.body;
-  
-  if (!city) {
-    res.status(400).json({ message: 'City is required' });
-    return;
-  }
-
-  try {
-    const { data, error } = await supabase
-      .from('weather_searches')
-      .insert({ city_name: city });
-
-    if (error) {
-      throw error;
+    if (response.ok) {
+      const data = await response.json();
+      res.json(data);
+    } else {
+      throw new Error('Weather data not found');
     }
-    res.status(201).json({ message: 'City search saved successfully', data });
   } catch (error) {
-    console.log('Error saving city search:', error);
-    res.status(500).json({ message: 'Unable to save city search' });
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/forecast/:city', async (req, res) => {
+  const city = req.params.city;
+  const forecastUrl = `${weatherAPI}?q=${city}&appid=${API_KEY}`;
+
+  try {
+    const response = await fetch(forecastUrl);
+
+    if (response.ok) {
+      const data = await response.json();
+      res.json(data);
+    } else {
+      throw new Error('Forecast data not found');
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
 app.listen(port, () => {
-  console.log(`App is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
