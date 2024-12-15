@@ -6,15 +6,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile('public/index.html', { root: __dirname });
 });
 
-app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'about.html'));
-});
 
-app.get('/help', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'help.html'));
+app.listen(3000, () => {
+  console.log('App is ALIVEEEEEE');
 });
-
-module.exports = app;
