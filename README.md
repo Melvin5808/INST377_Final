@@ -40,9 +40,11 @@ You can replace the above string with your actual OpenWeatherMap API key if need
 
 4. Start the application
 
+Starting the Server:
+In terminal type:
 
-Copy code
 npm start
+
 Once the server is running, open your browser and go to: http://localhost:3000
 
 ## Features
