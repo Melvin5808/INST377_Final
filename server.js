@@ -25,24 +25,6 @@ app.get('/currentWeather/:city', async (req, res) => {
   }
 });
 
-app.get('/forecast/:city', async (req, res) => {
-  const city = req.params.city;
-  const forecastUrl = `${weatherAPI}?q=${city}&appid=${API_KEY}`;
-
-  try {
-    const response = await fetch(forecastUrl);
-
-    if (response.ok) {
-      const data = await response.json();
-      res.json(data);
-    } else {
-      throw new Error('Forecast data not found');
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
