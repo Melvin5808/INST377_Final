@@ -18,7 +18,12 @@ Our responsive design ensures compatibility across different screen sizes.
 
 # Developer Manual
 
+## Vercel Link
+Our site is live, deployed and ready for your use via this link!
+https://inst-377-final-git-main-melvins-projects-1b9cf56c.vercel.app/
+
 ## How to Install and Run Locally
+
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (latest version recommended)
